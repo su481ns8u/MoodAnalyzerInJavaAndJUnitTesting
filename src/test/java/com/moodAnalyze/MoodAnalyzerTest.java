@@ -1,30 +1,37 @@
 package com.moodAnalyze;
 
+import com.moodAnalyzer.MoodAnalysisException;
 import com.moodAnalyzer.MoodAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.rmi.server.ExportException;
 
 public class MoodAnalyzerTest {
-    MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
+    MoodAnalyzer moodAnalyzer;
 
     @Test
-    public void analyzeMoodTest_returnsSAD_ifMoodEqualsSad() {
+    public void analyzeMoodTest_returnsSAD_ifMoodEqualsSad() throws MoodAnalysisException {
         moodAnalyzer = new MoodAnalyzer("I am in Sad Mood");
         String mood = this.moodAnalyzer.analyzeMood();
         Assert.assertEquals("SAD",mood);
     }
 
     @Test
-    public void analyzeMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad() {
+    public void analyzeMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad() throws MoodAnalysisException {
         moodAnalyzer = new MoodAnalyzer("I am in Any Mood");
         String mood = moodAnalyzer.analyzeMood();
         Assert.assertEquals("HAPPY",mood);
     }
 
     @Test
-    public void analyzeMoodTest_returnsHAPPY_ifMoodEqualsNull() {
-        moodAnalyzer = new MoodAnalyzer();
-        String mood = moodAnalyzer.analyzeMood();
-        Assert.assertEquals("HAPPY",mood);
+    public void givenNullMood_shouldThrowException() {
+        moodAnalyzer = new MoodAnalyzer(null);
+        try {
+            moodAnalyzer.analyzeMood();
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals("Please Enter Proper Message",e.getMessage());
+        }
     }
 }
