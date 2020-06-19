@@ -13,6 +13,9 @@ public class MoodAnalyzer {
 
     public String analyzeMood () throws MoodAnalysisException {
         try {
+            if (moodMessage.length() == 0) {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY,"Please Enter Proper Message");
+            }
             if (moodMessage.contains("I am in Sad Mood")) {
                 return "SAD";
             } else if (moodMessage.contains("I am in Any Mood")) {
@@ -21,7 +24,7 @@ public class MoodAnalyzer {
                 return null;
             }
         } catch (NullPointerException e) {
-            throw new MoodAnalysisException("Please Enter Proper Message");
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL,"Please Enter Proper Message");
         }
     }
 }
