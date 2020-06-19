@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.moodAnalyze.MoodAnalyzerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-19T17:35:26" hostname="DESKTOP-9DCLVAF" time="0.002">
+<testsuite name="com.moodAnalyze.MoodAnalyzerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-19T18:22:57" hostname="DESKTOP-9DCLVAF" time="0.003">
   <properties/>
-  <testcase name="happyMoodTest_givesTrue_ifMoodEqualsAnythingOtherThanSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.002"/>
+  <testcase name="sadMoodTest_returnsSAD_ifMoodEqualsSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.002"/>
+  <testcase name="happyMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
