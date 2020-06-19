@@ -8,15 +8,22 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
 
     @Test
-    public void sadMoodTest_returnsSAD_ifMoodEqualsSad() {
+    public void analyzeMoodTest_returnsSAD_ifMoodEqualsSad() {
         moodAnalyzer = new MoodAnalyzer("I am in Sad Mood");
         String mood = this.moodAnalyzer.analyzeMood();
         Assert.assertEquals("SAD",mood);
     }
 
     @Test
-    public void happyMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad() {
+    public void analyzeMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad() {
         moodAnalyzer = new MoodAnalyzer("I am in Any Mood");
+        String mood = moodAnalyzer.analyzeMood();
+        Assert.assertEquals("HAPPY",mood);
+    }
+
+    @Test
+    public void analyzeMoodTest_returnsHAPPY_ifMoodEqualsNull() {
+        moodAnalyzer = new MoodAnalyzer();
         String mood = moodAnalyzer.analyzeMood();
         Assert.assertEquals("HAPPY",mood);
     }
