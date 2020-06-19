@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="com.moodAnalyze.MoodAnalyzerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-19T18:26:44" hostname="DESKTOP-9DCLVAF" time="0.003">
   <properties/>
   <testcase name="sadMoodTest_returnsSAD_ifMoodEqualsSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.002"/>
   <testcase name="happyMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.0"/>
+=======
+<testsuite name="com.moodAnalyze.MoodAnalyzerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-19T18:32:36" hostname="DESKTOP-9DCLVAF" time="0.004">
+  <properties/>
+  <testcase name="sadMoodTest_returnsSAD_ifMoodEqualsSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.001"/>
+  <testcase name="happyMoodTest_returnsHAPPY_ifMoodEqualsAnythingOtherThanSad" classname="com.moodAnalyze.MoodAnalyzerTest" time="0.002"/>
+>>>>>>> uc1
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
