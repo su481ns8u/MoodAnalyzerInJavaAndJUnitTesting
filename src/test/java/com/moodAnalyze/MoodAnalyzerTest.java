@@ -9,7 +9,7 @@ public class MoodAnalyzerTest {
 
     @Test
     public void sadMoodTest_givesTrue_ifMoodEqualsSad() {
-        String mood = moodAnalyzer.analyzeMood("SAD");
+        String mood = moodAnalyzer.analyzeMood("I am in Sad Mood");
         Assert.assertEquals("SAD",mood);
     }
 
