@@ -1,9 +1,12 @@
-package com.moodAnalyze;
+package com.moodAnalyzer;
 
-import com.moodAnalyzer.MoodAnalysisException;
-import com.moodAnalyzer.MoodAnalyzer;
+import com.moodAnalyzer.exceptions.MoodAnalysisException;
+import com.moodAnalyzer.services.MoodAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;

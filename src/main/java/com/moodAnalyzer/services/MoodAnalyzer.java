@@ -1,13 +1,9 @@
-package com.moodAnalyzer;
+package com.moodAnalyzer.services;
 
 import com.moodAnalyzer.exceptions.MoodAnalysisException;
 
 public class MoodAnalyzer {
     String moodMessage;
-
-    public MoodAnalyzer() {
-
-    }
 
     public MoodAnalyzer(String moodMessage) {
         this.moodMessage = moodMessage;
@@ -20,7 +16,7 @@ public class MoodAnalyzer {
             }
             if (moodMessage.contains("I am in Sad Mood")) {
                 return "SAD";
-            } else if (moodMessage.contains("I am in Any Mood")) {
+            } else if (moodMessage.contains("I am in a Happy Mood")) {
                 return "HAPPY";
             } else {
                 return null;

@@ -1,4 +1,4 @@
-package com.moodAnalyzer;
+package com.moodAnalyzer.exceptions;
 
 public class MoodAnalysisException extends Exception {
     public ExceptionType type;
