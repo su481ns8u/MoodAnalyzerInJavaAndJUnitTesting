@@ -4,9 +4,6 @@ import com.moodAnalyzer.MoodAnalysisException;
 import com.moodAnalyzer.MoodAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import java.rmi.server.ExportException;
 
 public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;

@@ -1,5 +1,7 @@
 package com.moodAnalyzer;
 
+import com.moodAnalyzer.exceptions.MoodAnalysisException;
+
 public class MoodAnalyzer {
     String moodMessage;
 
