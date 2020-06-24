@@ -13,7 +13,7 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
-    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, MoodAnalysisException {
+    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
         MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood");
         String mood = moodAnalyzer.analyzeMood();
         Assert.assertEquals("HAPPY",mood);
