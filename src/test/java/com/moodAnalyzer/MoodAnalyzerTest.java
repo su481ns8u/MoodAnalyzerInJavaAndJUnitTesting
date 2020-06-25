@@ -5,12 +5,23 @@ import com.moodAnalyzer.services.MoodAnalyzer;
 import com.moodAnalyzer.services.MoodAnalyzerFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
+
+    @Test
+    public void givenClass_WhenConstructorNotProper_ShouldThrowMoodAnalysisException() throws MoodAnalysisException {
+        try {
+            Constructor<?> constructor = Class.forName("com.moodAnalyzer.services.MoodAnalyzer").getConstructor(String.class);
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            MoodAnalysisException exp = new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, "Constructor improper");
+            Assert.assertEquals(exp, new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, "Constructor improper"));
+        }
+    }
 
     @Test
     public void givenClassName_WhenImproper_ShouldThrowMoodAnalysisException() throws MoodAnalysisException {

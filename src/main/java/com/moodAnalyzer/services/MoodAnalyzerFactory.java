@@ -15,7 +15,6 @@ public class MoodAnalyzerFactory {
         } catch (ClassNotFoundException e) {
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CLASS,"Improper Class Name");
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-
         }
         return null;
     }
