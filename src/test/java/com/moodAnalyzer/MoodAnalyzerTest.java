@@ -2,12 +2,10 @@ package com.moodAnalyzer;
 
 import com.moodAnalyzer.exceptions.MoodAnalysisException;
 import com.moodAnalyzer.services.MoodAnalyzer;
-import com.moodAnalyzer.services.MoodAnalyzerFactory;
+import com.moodAnalyzer.services.MoodAnalyzerReflector;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import java.lang.annotation.Inherited;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -15,9 +13,16 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
+    public void givenHappyMessageUsingReflection_WhenProper_ShouldReturnHAPPYMood() throws MoodAnalysisException, NoSuchMethodException {
+        Object moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood", "com.moodAnalyzer.services.MoodAnalyzer", String.class);
+        Object analyzeMood = MoodAnalyzerReflector.invokeMethod(moodAnalyzer, "analyzeMood");
+        Assert.assertEquals("HAPPY",analyzeMood);
+    }
+
+    @Test
     public void givenClass_WhenConstructorNotProper_ShouldThrowMoodAnalysisException() {
         try {
-            MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood", "com.moodAnalyzer.services.MoodAnalyzer", Integer.class);
+            MoodAnalyzer moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood", "com.moodAnalyzer.services.MoodAnalyzer", Integer.class);
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, e.type);
         }
@@ -26,7 +31,7 @@ public class MoodAnalyzerTest {
     @Test
     public void givenClassName_WhenImproper_ShouldThrowMoodAnalysisException() {
         try {
-            MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in Happy Mood", "com.moodAnalyzer.services.MoodAnalyse",String.class);
+            MoodAnalyzer moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in Happy Mood", "com.moodAnalyzer.services.MoodAnalyse",String.class);
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.ExceptionType.IMPROPER_CLASS, e.type);
         }
@@ -34,7 +39,7 @@ public class MoodAnalyzerTest {
 
     @Test
     public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
-        MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood","com.moodAnalyzer.services.MoodAnalyzer", String.class);
+        MoodAnalyzer moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood","com.moodAnalyzer.services.MoodAnalyzer", String.class);
         Assert.assertTrue(new MoodAnalyzer("I am in a Happy Mood").equals(moodAnalyzer));
     }
 
