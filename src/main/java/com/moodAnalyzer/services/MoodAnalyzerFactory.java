@@ -1,15 +1,21 @@
 package com.moodAnalyzer.services;
 
+import com.moodAnalyzer.exceptions.MoodAnalysisException;
+
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyzerFactory {
-    public static MoodAnalyzer createMoodAnalyzer(String message) {
+    public static MoodAnalyzer createMoodAnalyzer(String message,String className) throws MoodAnalysisException {
         try {
-            Class<?> moodAnalyzerClass = Class.forName("com.moodAnalyzer.services.MoodAnalyzer");
+            Class<?> moodAnalyzerClass = Class.forName(className);
             Constructor<?> moodConstructor = moodAnalyzerClass.getConstructor(String.class);
             Object moodObj = moodConstructor.newInstance(message);
             return (MoodAnalyzer) moodObj;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CLASS,"Improper Class Name");
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+
         }
         return null;
     }

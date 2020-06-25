@@ -13,8 +13,17 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
-    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() {
-        MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood");
+    public void givenClassName_WhenImproper_ShouldThrowMoodAnalysisException() throws MoodAnalysisException {
+        try {
+            MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in Happy Mood", "com.moodAnalyzer.services.MoodAnalyse");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.IMPROPER_CLASS, e.type);
+        }
+    }
+
+    @Test
+    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
+        MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood","com.moodAnalyzer.services.MoodAnalyzer");
         Assert.assertTrue(new MoodAnalyzer("I am in a Happy Mood").equals(moodAnalyzer));
     }
 
