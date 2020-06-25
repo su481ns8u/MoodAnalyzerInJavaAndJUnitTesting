@@ -14,17 +14,20 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
-    public void givenClass_WhenConstructorNotProper_ShouldThrowMoodAnalysisException() throws MoodAnalysisException {
+    public void name() {
+    }
+
+    @Test
+    public void givenClass_WhenConstructorNotProper_ShouldThrowMoodAnalysisException() {
         try {
-            Constructor<?> constructor = Class.forName("com.moodAnalyzer.services.MoodAnalyzer").getConstructor(String.class);
-        } catch (NoSuchMethodException | ClassNotFoundException e) {
-            MoodAnalysisException exp = new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, "Constructor improper");
-            Assert.assertEquals(exp, new MoodAnalysisException(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, "Constructor improper"));
+            MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("", "com.moodAnalyzer.services.MoodAnalyzer");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.IMPROPER_CONSTRUCTOR, e.type);
         }
     }
 
     @Test
-    public void givenClassName_WhenImproper_ShouldThrowMoodAnalysisException() throws MoodAnalysisException {
+    public void givenClassName_WhenImproper_ShouldThrowMoodAnalysisException() {
         try {
             MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in Happy Mood", "com.moodAnalyzer.services.MoodAnalyse");
         } catch (MoodAnalysisException e) {
@@ -34,7 +37,8 @@ public class MoodAnalyzerTest {
 
     @Test
     public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
-        MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood","com.moodAnalyzer.services.MoodAnalyzer");
+        MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood",
+                "com.moodAnalyzer.services.MoodAnalyzer");
         Assert.assertTrue(new MoodAnalyzer("I am in a Happy Mood").equals(moodAnalyzer));
     }
 
