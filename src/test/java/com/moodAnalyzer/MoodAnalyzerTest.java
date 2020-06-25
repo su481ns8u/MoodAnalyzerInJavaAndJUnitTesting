@@ -13,6 +13,17 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
+    public void givenHappyMessage_WhenImproper_ShouldReturnException() {
+        Object moodAnalyzer = null;
+        try {
+            moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood", "com.moodAnalyzer.services.MoodAnalyzer", String.class);
+            Object analyzeMood = MoodAnalyzerReflector.invokeMethod(moodAnalyzer, "analeMood");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.IMPROPER_METHOD, e.type);
+        }
+    }
+
+    @Test
     public void givenHappyMessageUsingReflection_WhenProper_ShouldReturnHAPPYMood() throws MoodAnalysisException, NoSuchMethodException {
         Object moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood", "com.moodAnalyzer.services.MoodAnalyzer", String.class);
         Object analyzeMood = MoodAnalyzerReflector.invokeMethod(moodAnalyzer, "analyzeMood");
