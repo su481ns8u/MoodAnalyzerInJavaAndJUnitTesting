@@ -13,10 +13,9 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
-    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
+    public void givenMoodAnalyzerClass_WhenProper_ShouldReturnObject() {
         MoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in a Happy Mood");
-        String mood = moodAnalyzer.analyzeMood();
-        Assert.assertEquals("HAPPY",mood);
+        Assert.assertTrue(new MoodAnalyzer("I am in a Happy Mood").equals(moodAnalyzer));
     }
 
     @Test

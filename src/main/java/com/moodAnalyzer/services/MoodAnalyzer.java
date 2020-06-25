@@ -9,10 +9,15 @@ public class MoodAnalyzer {
         this.moodMessage = moodMessage;
     }
 
-    public String analyzeMood () throws MoodAnalysisException {
+    public String analyzeMood(String message) throws MoodAnalysisException {
+        this.moodMessage = message;
+        return analyzeMood();
+    }
+
+    public String analyzeMood() throws MoodAnalysisException {
         try {
             if (moodMessage.length() == 0) {
-                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY,"Please Enter Proper Message");
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, "Please Enter Proper Message");
             }
             if (moodMessage.contains("I am in Sad Mood")) {
                 return "SAD";
@@ -22,7 +27,15 @@ public class MoodAnalyzer {
                 return null;
             }
         } catch (NullPointerException e) {
-            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL,"Please Enter Proper Message");
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Please Enter Proper Message");
+        }
+    }
+
+    public boolean equals(MoodAnalyzer another) {
+        if (this.moodMessage.equals(another.moodMessage)) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
