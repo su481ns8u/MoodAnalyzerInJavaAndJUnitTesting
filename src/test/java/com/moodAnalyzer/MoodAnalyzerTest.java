@@ -13,6 +13,14 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
+    public void givenMoodAnalyzer_OnChangeMood_ShouldReturnHappy() throws MoodAnalysisException {
+        Object moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("","com.moodAnalyzer.services.MoodAnalyzer", String.class);
+        MoodAnalyzerReflector.setFieldValue(moodAnalyzer, "moodMessage", "I am in a Happy Mood");
+        Object analyzeMood = MoodAnalyzerReflector.invokeMethod(moodAnalyzer, "analyzeMood");
+        Assert.assertEquals("HAPPY",analyzeMood);
+    }
+
+    @Test
     public void givenHappyMessage_WhenImproper_ShouldReturnException() {
         Object moodAnalyzer = null;
         try {
