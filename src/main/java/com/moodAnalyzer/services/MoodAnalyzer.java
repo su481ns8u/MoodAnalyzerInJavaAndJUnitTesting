@@ -5,6 +5,8 @@ import com.moodAnalyzer.exceptions.MoodAnalysisException;
 public class MoodAnalyzer {
     String moodMessage;
 
+    public MoodAnalyzer() {}
+
     public MoodAnalyzer(String moodMessage) {
         this.moodMessage = moodMessage;
     }
@@ -18,8 +20,7 @@ public class MoodAnalyzer {
         try {
             if (moodMessage.length() == 0) {
                 throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, "Please Enter Proper Message");
-            }
-            if (moodMessage.contains("I am in Sad Mood")) {
+            } else if (moodMessage.contains("I am in Sad Mood")) {
                 return "SAD";
             } else if (moodMessage.contains("I am in a Happy Mood")) {
                 return "HAPPY";
