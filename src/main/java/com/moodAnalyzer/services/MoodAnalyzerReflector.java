@@ -9,6 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 public class MoodAnalyzerReflector {
     public static MoodAnalyzer createMoodAnalyzer(String message, String className, Class dataType) throws MoodAnalysisException{
         try {
+            if (message.length() == 0){
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, "Entered message is empty");
+            }
             Class<?> moodAnalyzerClass = Class.forName(className);
             Constructor<?> moodConstructor = moodAnalyzerClass.getConstructor(dataType);
             Object moodObj = moodConstructor.newInstance(message);
