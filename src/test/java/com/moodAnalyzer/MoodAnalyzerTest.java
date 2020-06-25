@@ -13,6 +13,18 @@ public class MoodAnalyzerTest {
     MoodAnalyzer moodAnalyzer;
 
     @Test
+    public void setFieldValue_When_ShouldThrowException() {
+        try {
+            Object moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("I am in a Happy Mood","com.moodAnalyzer.services.MoodAnalyzer", String.class);
+            MoodAnalyzerReflector.setFieldValue(moodAnalyzer, "moodMessage", "I am in a Happy Mood");
+            Object analyzeMood = MoodAnalyzerReflector.invokeMethod(moodAnalyzer, "analyzeMood");
+            Assert.assertEquals("HAPPY",analyzeMood);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_NULL, e.type);
+        }
+    }
+
+    @Test
     public void setFieldValue_WhenImproper_ShouldThrowException() {
         try {
             Object moodAnalyzer = MoodAnalyzerReflector.createMoodAnalyzer("","com.moodAnalyzer.services.MoodAnalyzer", String.class);

@@ -7,10 +7,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyzerReflector {
-    public static MoodAnalyzer createMoodAnalyzer(String message, String className, Class dataType) throws MoodAnalysisException{
+    public static MoodAnalyzer createMoodAnalyzer(String message, String className, Class dataType) throws MoodAnalysisException {
         try {
-            if (message.length() == 0){
+            if (message.length() == 0) {
                 throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, "Entered message is empty");
+            } else if (message == null) {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Null message entered");
             }
             Class<?> moodAnalyzerClass = Class.forName(className);
             Constructor<?> moodConstructor = moodAnalyzerClass.getConstructor(dataType);
